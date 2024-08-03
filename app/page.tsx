@@ -1,14 +1,12 @@
 "use client"
 
-import Navbar from "./components/navbar"
-
-
+import Home from "./components/home"
 
 
 export default function HomePage() {
   return (
-    <div>
-  <Navbar/>
+    <div className={`bg-primary min-h-screen relative`}>
+      <Home/>
     </div>
   )
 }

@@ -8,7 +8,7 @@
   :root {
     
     --background: #fff;
-    --foreground: ;
+    --foreground: #0c0f0d;
     --font-sans: "IBM Plex Sans", sans-serif;
 
     --muted: 210 40% 96.1%;
@@ -23,7 +23,7 @@
     --card: #2d7d40;
     --card-foreground: #f4a952;
 
-    --primary: #2d7d40;
+    --primary: #adf802;
     --primary-foreground: #fff;
 
     --secondary: #f4a952;

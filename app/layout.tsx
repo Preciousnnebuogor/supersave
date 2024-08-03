@@ -3,8 +3,6 @@ import { Metadata } from "next"
 import { TailwindIndicator, ThemeProvider } from "@/comps"
 import { siteConfig } from "@/lib"
 
-
-
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
@@ -36,16 +34,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
           //fontSans.variable
         }
       >
-        
-          <div>
-              
-              {/* <SiteHeader /> */}
-              <div className="flex-1">{children}</div>
-              
-            </div>
-            {/* <TailwindIndicator /> */}
-          
-        
+        <div>
+          {/* <SiteHeader /> */}
+          <div className="flex-1">{children}</div>
+        </div>
+        {/* <TailwindIndicator /> */}
       </body>
     </html>
   )
