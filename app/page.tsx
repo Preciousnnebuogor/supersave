@@ -1,14 +1,35 @@
 "use client"
 
-import Deposit from "./components/deposit"
-import Home from "./components/home"
+import Link from "next/link"
 
 
 export default function HomePage() {
   return (
     <div className={`bg-primary min-h-screen relative`}>
-      <Home/>
-      {/* <Deposit/> */}
+      <div className={` `}>
+        <h1 className={`pt-5 pl-5`}>SuperSave</h1>
+        <div className={` w-full flex items-center justify-center`}>
+          <img src={"./man.png"} />
+        </div>
+        <div className={`p-4`}>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore,
+            enim totam. Iure nobis illo quod? Qui, ratione consectetur minima
+            beatae itaque rerum.
+          </p>
+
+          <div className={`mt-4  flex items-center justify-center`}>
+            <Link href={"/deposit"}>
+              <button
+                className={`rounded-2xl text-center font-bold px-6 py-3  bg-white border-2 border-white`}
+              >
+                Deposit Now
+              </button>
+            </Link>
+          </div>
+        </div>
+        <div></div>
+      </div>
     </div>
   )
 }
