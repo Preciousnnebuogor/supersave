@@ -5,12 +5,8 @@ import Link from "next/link"
 export default function Deposit() {
   return (
     <div className={``}>
-      <div className={`pt-5 pl-5`}>
-        <h1>
-          Super<span className={`text-primary`}>Save</span>
-        </h1>
-      </div>
-      <div className={`px-4 mt-20`}>
+      
+      <div className={`px-4 mt-10`}>
         <div
           className={`border-2 border-primary rounded-xl bg-primary w-[50%] px-5 py-6`}
         >
