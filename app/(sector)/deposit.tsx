@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { ZodType, z } from "zod";
-import React from "react";
 
 
 
@@ -12,7 +12,12 @@ import React from "react";
 
 const schema = z.object({
   amount: z.number(),
-  purpose: z.string().min(3, { message: "must contain 3 to 10 " }).max(10),
+  purpose: z.string().min(3, { message: "must contain 3 to 10 words " }).max(10,  {message: "must contain 3 to 10 words "}),
+  
+  sholdLock: z.boolean().refine((val) => val === true, {
+    message: "You must lock your funds",
+  }),
+
   duration: z.enum(
     [
       "1week",
@@ -118,6 +123,7 @@ export default function Deposit() {
               >
                 <label>
                   <input
+                   {...register("sholdLock")} 
                     type="checkbox"
                     placeholder="lock"
                     className={`mr-2`}
@@ -125,6 +131,9 @@ export default function Deposit() {
                   Locked
                 </label>
               </div>
+              {errors.sholdLock?.message && (
+                <span className={`text-red-700`}>{errors.sholdLock.message}</span>
+              )}
             </div>
 
             <div className={`mt-6  flex items-center justify-center`}>
