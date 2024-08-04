@@ -4,7 +4,9 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <div className={`flex justify-between items-center text-center fixed bottom-0 py-2`}>
+    <div
+      className={`flex justify-between items-center text-center fixed bottom-0 py-2 w-[100%]`}
+    >
       <div
         className={
           "flex flex-row justify-between text-center mx-auto md:px-6 px-4 py-2 "
@@ -14,31 +16,22 @@ export default function Footer() {
           <Link
             href={"/"}
             className={
-              " hover:text-secondary p-4 mt-20 md:mt-0 text-secondary-foreground"
+              " hover:text-black p-4 mt-20 md:mt-0 text-primary"
             }
           >
             Home
           </Link>
           <Link
             href={"/deposit"}
-            className={" hover:text-secondary p-4 text-secondary-foreground"}
+            className={" hover:text-black p-4 text-primary"}
           >
             Deposit
           </Link>
 
           <Link
-            href={"/profile"}
+            href={"/withdrawal"}
             className={
-              " hover:text-secondary p-4 mt-20 md:mt-0 text-secondary-foreground"
-            }
-          >
-            Profile
-          </Link>
-
-          <Link
-            href={"/withdrwal"}
-            className={
-              " hover:text-secondary p-4 mt-20 md:mt-0 text-secondary-foreground"
+              " hover:text-black p-4 mt-20 md:mt-0 text-secondary-primary"
             }
           >
             Withdrawal
