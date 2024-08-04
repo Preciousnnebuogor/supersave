@@ -32,14 +32,20 @@ export default function Deposit() {
 
           <select className={`border-2 border-primary px-2 py-2 mt-3 w-full`}>
             <option value="Plan">Duration</option>
+            <option value="Plan">1week</option>
+            <option value="Plan">2weeks</option>
+            <option value="Plan">1months</option>
+            <option value="Plan">2months</option>
+            <option value="Plan">3months</option>
             <option value="Plan">4months</option>
+            <option value="Plan">5months</option>
             <option value="Plan">6months</option>
-            <option value="Plan">8months</option>
-            <option value="Plan">12months</option>
-            <option value="Plan">16months</option>
-            <option value="Plan">20months</option>
-            <option value="Plan">24months</option>
-            <option value="Plan">26months</option>
+             <option value="Plan">7months</option>
+              <option value="Plan">8months</option>
+               <option value="Plan">9months</option>
+                <option value="Plan">10months</option>
+                 <option value="Plan">11months</option>
+                  <option value="Plan">1year</option>
           </select>
 
           <div
