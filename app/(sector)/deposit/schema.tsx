@@ -38,11 +38,11 @@ export type FormData = z.infer<typeof schema>
 
 export default function durationTranformater(duration: string): number {
   if (duration === "1week") {
-    return 1000
+    return 100
   } else if (duration === "2weeks")  {
-    return  2000
+    return  100
   } else if (duration === "3weeks") {
-    return 3000
+    return 100
   } else if (duration === "4weeks") {
     return 4000
   } else if (duration === "5weeks") {

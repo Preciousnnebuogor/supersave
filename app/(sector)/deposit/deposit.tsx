@@ -4,17 +4,21 @@ import React from "react";
 import { SuperSaveContract } from "@/Contract";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useReadContract, useWriteContract } from "wagmi";
+import { useAccount, useBalance, useConnect, useReadContract, useWriteContract } from "wagmi";
 
 
 
-import { FormData, schema } from "./schema";
+import durationTranformater, { FormData, schema } from "./schema";
+import { injected } from "wagmi/connectors";
 
 
 export default function Deposit() {
+  const { connect } = useConnect()
   const { writeContract } = useWriteContract()
-
-
+  const account = useAccount()
+  const balanceResult = useBalance({
+    address: account.address,
+  })
 
   const {
     register,
@@ -30,10 +34,7 @@ export default function Deposit() {
       abi: SuperSaveContract.abi,
       address: SuperSaveContract.address as `0x${string}`,
       functionName: "deposit",
-      args: [
-        data.duration,
-        data.purpose,
-      ],
+      args: [durationTranformater(data.duration), data.purpose],
     })
   }
 
@@ -44,7 +45,7 @@ export default function Deposit() {
           className={`border-2 border-primary rounded-xl bg-primary w-[50%] px-5 py-6`}
         >
           <h1>Wallet Balance:</h1>
-          <h1>$20</h1>
+          {balanceResult.data && <h1>{balanceResult.data.value.toString()}</h1>}
         </div>
         <div className={`flex flex-col items-center justify-center `}>
           <form onSubmit={handleSubmit(submitData)}>
@@ -118,6 +119,7 @@ export default function Deposit() {
 
             <div className={`mt-6  flex items-center justify-center`}>
               <button
+              onClick={() => connect({ connector: injected() })}
                 type="submit"
                 className={`rounded-2xl text-center font-bold px-8 py-3  bg-primary border-2 border-primary`}
               >
