@@ -1,9 +1,32 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
+import { SuperSaveContract } from "@/Contract";
+import { useAccount, useReadContract } from "wagmi";
+
+
+
+
 
 export default function People() {
   const [valid, setValid] = useState(false)
+
+  const account = useAccount()
+
+  const result = useReadContract({
+    abi: SuperSaveContract.abi,
+    address: SuperSaveContract.address as `0x${string}`,
+    functionName: "getAllDeposits",
+    args: [
+      // "0xd2135CfB216b74109775236E36d4b433F1DF507B",
+      account.address
+    ],
+  })
+
+  if (result.data) {
+    console.log("result", result.data)
+    return <div>Loading...</div>
+  }
 
   return (
     <div className={`px-10`}>

@@ -1,54 +1,21 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { SuperSaveContract } from "@/Contract";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { ZodType, z } from "zod";
+import { useReadContract, useWriteContract } from "wagmi";
 
 
 
+import { FormData, schema } from "./schema";
 
 
-const schema = z.object({
-  amount: z.number(),
-  purpose: z.string().min(3, { message: "must contain 3 to 10 words " }).max(10,  {message: "must contain 3 to 10 words "}),
-  
-  sholdLock: z.boolean().refine((val) => val === true, {
-    message: "You must lock your funds",
-  }),
-
-  duration: z.enum(
-    [
-      "1week",
-      "2weeks",
-      "3weeks",
-      "4weeks",
-      "5weeks",
-      "6weeks",
-      "7weeks",
-      "8weeks",
-      "9weeks",
-      "10weeks",
-      "11weeks",
-      "1year",
-    ],
-    {
-      errorMap: () => ({ message: "Please select a valid duration" }),
-    }
-  ),
-})
-
-type FormData = z.infer<typeof schema>
-
-
-// type FormData = {
-//   amount: number
-//   purpose: string
-//   duration: 
-// }
 export default function Deposit() {
-  
+  const { writeContract } = useWriteContract()
+
+
+
   const {
     register,
     handleSubmit,
@@ -59,6 +26,15 @@ export default function Deposit() {
 
   const submitData = (data: FormData) => {
     console.log("Form has been validated")
+    writeContract({
+      abi: SuperSaveContract.abi,
+      address: SuperSaveContract.address as `0x${string}`,
+      functionName: "deposit",
+      args: [
+        data.duration,
+        data.purpose,
+      ],
+    })
   }
 
   return (
@@ -115,7 +91,9 @@ export default function Deposit() {
                 <option value="1year">1year</option>
               </select>
               {errors.duration?.message && (
-                <span className={`text-red-700`}>{errors.duration.message}</span>
+                <span className={`text-red-700`}>
+                  {errors.duration.message}
+                </span>
               )}
 
               <div
@@ -123,7 +101,7 @@ export default function Deposit() {
               >
                 <label>
                   <input
-                   {...register("sholdLock")} 
+                    {...register("sholdLock")}
                     type="checkbox"
                     placeholder="lock"
                     className={`mr-2`}
@@ -132,7 +110,9 @@ export default function Deposit() {
                 </label>
               </div>
               {errors.sholdLock?.message && (
-                <span className={`text-red-700`}>{errors.sholdLock.message}</span>
+                <span className={`text-red-700`}>
+                  {errors.sholdLock.message}
+                </span>
               )}
             </div>
 

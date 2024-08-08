@@ -1,6 +1,6 @@
 "use client"
 
-import Deposit from "../deposit"
+import Deposit from "./deposit"
 
 export default function HomePage() {
   return (
