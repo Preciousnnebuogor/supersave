@@ -1,4 +1,4 @@
-;[
+export const contractAbi = [
   {
     anonymous: false,
     inputs: [
