@@ -1,3 +1,4 @@
 export const Contract = {
-    address: process
+    address: process.env.NETWORK ENVIRONMENT === "MAINNET" ? "0x" : "0x"
+    abi: ""
 }
